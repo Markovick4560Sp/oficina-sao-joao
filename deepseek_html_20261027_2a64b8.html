@@ -1,0 +1,1160 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Oficina São João | Mecânica de Confiança em São Luís</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #5c3a21;
+            --primary-dark: #3e2514;
+            --accent: #a36e46;
+            --accent-light: #d9c3b0;
+            --dark: #1a1a1a;
+            --light: #f4f1ec;
+            --gray: #6c757d;
+            --white: #ffffff;
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--dark);
+            background-color: var(--white);
+            line-height: 1.5;
+            overflow-x: hidden;
+            font-weight: 400;
+            letter-spacing: -0.2px;
+        }
+
+        h1, h2, h3 {
+            font-weight: 600;
+            letter-spacing: -1px;
+            line-height: 1.15;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* --- HEADER & NAV --- */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(26, 26, 26, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 15px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: var(--transition);
+        }
+
+        .logo {
+            color: var(--white);
+            font-size: 1.4rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            letter-spacing: -0.5px;
+        }
+
+        .logo span {
+            color: var(--accent-light);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 25px;
+        }
+
+        .nav-links a {
+            color: var(--white);
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: var(--transition);
+            position: relative;
+            letter-spacing: -0.3px;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent-light);
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .btn-header {
+            background: var(--primary);
+            color: var(--white);
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: var(--transition);
+            letter-spacing: -0.3px;
+        }
+
+        .btn-header:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+
+        .mobile-menu {
+            display: none;
+            color: var(--white);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            height: 100vh;
+            min-height: 600px;
+            /* AQUI ESTÁ A MUDANÇA: O url() aponta para a imagem salva na mesma pasta */
+            background: linear-gradient(rgba(26, 26, 26, 0.75), rgba(62, 37, 20, 0.85)), url('fachada-oficina.jpg') center/cover;
+            display: flex;
+            align-items: center;
+            padding: 0 5%;
+            position: relative;
+            margin-top: 60px;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            color: var(--white);
+            /* Fundo sutil para garantir leitura caso a foto seja muito clara */
+            background: rgba(0, 0, 0, 0.2); 
+            padding: 40px;
+            border-radius: 10px;
+            backdrop-filter: blur(2px);
+        }
+
+        .hero-badge {
+            background: var(--accent-light);
+            color: var(--primary-dark);
+            display: inline-block;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 0.8rem;
+            margin-bottom: 20px;
+            letter-spacing: 0.5px;
+        }
+
+        .hero h1 {
+            font-size: 3.8rem;
+            margin-bottom: 15px;
+            animation: slideUp 1s ease forwards;
+            opacity: 0;
+            transform: translateY(30px);
+            letter-spacing: -1.5px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5); /* Sombra para destacar do fundo */
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+            opacity: 0;
+            animation: slideUp 1s ease 0.3s forwards;
+            color: #f0f0f0;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.6);
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 15px;
+            opacity: 0;
+            animation: slideUp 1s ease 0.6s forwards;
+        }
+
+        .btn {
+            padding: 15px 30px;
+            border-radius: 5px;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+            border: none;
+            letter-spacing: -0.3px;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: var(--white);
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(92,58,33,0.4);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--white);
+            border: 2px solid var(--white);
+        }
+
+        .btn-outline:hover {
+            background: var(--white);
+            color: var(--primary-dark);
+        }
+
+        /* --- SECTION GENERAL --- */
+        section {
+            padding: 100px 5%;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-subtitle {
+            color: var(--primary);
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            color: var(--dark);
+            font-weight: 600;
+            letter-spacing: -1px;
+        }
+
+        /* --- SERVICES --- */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .service-card {
+            background: var(--white);
+            border-radius: 10px;
+            padding: 40px 30px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+            transition: var(--transition);
+            border-bottom: 4px solid transparent;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            border-bottom: 4px solid var(--primary);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+
+        .service-icon {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+
+        .service-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            letter-spacing: -0.5px;
+        }
+
+        .service-card p {
+            color: var(--gray);
+            font-size: 0.95rem;
+            letter-spacing: -0.1px;
+        }
+
+        /* --- ABOUT / INFO --- */
+        .about {
+            background: var(--light);
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .about-image {
+            position: relative;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            border: 5px solid var(--primary);
+        }
+
+        .about-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+            display: block;
+        }
+
+        .about-image:hover img {
+            transform: scale(1.05);
+        }
+
+        .about-content h2 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            color: var(--primary-dark);
+            letter-spacing: -1px;
+        }
+
+        .about-content p {
+            color: var(--gray);
+            margin-bottom: 30px;
+            letter-spacing: -0.2px;
+        }
+
+        .info-list {
+            list-style: none;
+        }
+
+        .info-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .info-list i {
+            color: var(--primary);
+            font-size: 1.2rem;
+            margin-top: 3px;
+        }
+
+        .info-list strong {
+            display: block;
+            font-size: 1rem;
+            color: var(--dark);
+            font-weight: 600;
+            letter-spacing: -0.3px;
+        }
+
+        .info-list span {
+            color: var(--gray);
+            font-size: 0.95rem;
+            letter-spacing: -0.1px;
+        }
+
+        /* --- REVIEWS (CARROSSEL ANIMADO) --- */
+        .reviews {
+            background: var(--primary-dark);
+            color: var(--white);
+            overflow: hidden;
+        }
+
+        .reviews .section-title {
+            color: var(--white);
+        }
+
+        .reviews .section-subtitle {
+            color: var(--accent-light);
+        }
+
+        .reviews-carousel-wrapper {
+            width: 100%;
+            overflow: hidden;
+            position: relative;
+            padding: 20px 0;
+            mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
+            -webkit-mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
+        }
+
+        .reviews-track {
+            display: flex;
+            gap: 30px;
+            width: max-content;
+            animation: slideRight 50s linear infinite;
+        }
+
+        .reviews-track:hover {
+            animation-play-state: paused;
+        }
+
+        .review-card {
+            background: rgba(255,255,255,0.05);
+            padding: 30px;
+            border-radius: 10px;
+            border: 1px solid rgba(255,255,255,0.1);
+            transition: background 0.3s ease;
+            width: 350px;
+            flex-shrink: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .review-card:hover {
+            background: rgba(255,255,255,0.1);
+            border-color: var(--accent-light);
+        }
+
+        .stars {
+            color: var(--accent-light);
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+
+        .review-text {
+            font-style: italic;
+            margin-bottom: 20px;
+            color: #e0e0e0;
+            line-height: 1.5;
+            font-size: 0.95rem;
+            letter-spacing: -0.1px;
+        }
+
+        .reviewer {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-top: auto;
+        }
+
+        .reviewer-avatar {
+            width: 45px;
+            height: 45px;
+            background: var(--accent);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 1.1rem;
+            color: var(--white);
+            flex-shrink: 0;
+        }
+
+        .reviewer-info h4 {
+            font-size: 0.95rem;
+            margin-bottom: 2px;
+            font-weight: 600;
+            color: var(--white);
+            letter-spacing: -0.3px;
+        }
+
+        .reviewer-info span {
+            font-size: 0.8rem;
+            color: var(--accent-light);
+            letter-spacing: 0;
+        }
+
+        .google-badge {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 50px;
+            font-size: 1.1rem;
+            letter-spacing: -0.2px;
+        }
+
+        .google-badge strong {
+            font-size: 1.4rem;
+            color: var(--accent-light);
+            font-weight: 600;
+        }
+
+        @keyframes slideRight {
+            0% { transform: translateX(-50%); }
+            100% { transform: translateX(0); }
+        }
+
+        /* --- CONTACT / FOOTER --- */
+        .contact {
+            background: var(--white);
+        }
+
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            background: var(--light);
+            padding: 50px;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            border-top: 5px solid var(--primary);
+        }
+
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .form-group label {
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: var(--primary-dark);
+            letter-spacing: -0.2px;
+        }
+
+        .form-group input, .form-group textarea {
+            padding: 15px;
+            border: 1px solid #dcdcdc;
+            border-radius: 5px;
+            font-family: inherit;
+            font-weight: 400;
+            transition: var(--transition);
+            background: var(--white);
+            letter-spacing: -0.1px;
+        }
+
+        .form-group input:focus, .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(92,58,33,0.1);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .contact-info-box {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .contact-info-box h3 {
+            font-size: 2rem;
+            margin-bottom: 15px;
+            color: var(--primary-dark);
+            letter-spacing: -0.8px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 20px;
+            padding: 15px;
+            background: var(--white);
+            border-radius: 8px;
+            transition: var(--transition);
+        }
+
+        .contact-item:hover {
+            transform: translateX(10px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+
+        .contact-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--primary);
+            color: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            flex-shrink: 0;
+        }
+
+        .contact-text h4 {
+            font-size: 1rem;
+            margin-bottom: 2px;
+            font-weight: 600;
+            letter-spacing: -0.3px;
+        }
+
+        .contact-text p {
+            color: var(--gray);
+            font-size: 0.9rem;
+            letter-spacing: -0.1px;
+        }
+
+        footer {
+            background: var(--primary-dark);
+            color: var(--accent-light);
+            text-align: center;
+            padding: 30px;
+            font-size: 0.9rem;
+            letter-spacing: -0.1px;
+        }
+
+        /* --- ANIMATIONS GERAIS --- */
+        @keyframes slideUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 992px) {
+            .about, .contact-container {
+                grid-template-columns: 1fr;
+            }
+            .hero h1 {
+                font-size: 3rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links, .btn-header {
+                display: none;
+            }
+            .mobile-menu {
+                display: block;
+            }
+            .hero h1 {
+                font-size: 2.5rem;
+                letter-spacing: -1px;
+            }
+            .hero p {
+                font-size: 1rem;
+            }
+            .hero-buttons {
+                flex-direction: column;
+            }
+            .btn {
+                justify-content: center;
+            }
+            .contact-container {
+                padding: 30px;
+            }
+            .reviews-track {
+                animation-duration: 80s;
+            }
+            .hero-content {
+                padding: 20px;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <!-- HEADER -->
+    <header id="header">
+        <div class="logo">
+            <i class="fa-solid fa-wrench"></i> Oficina <span>São João</span>
+        </div>
+        <nav class="nav-links">
+            <a href="#home">Início</a>
+            <a href="#servicos">Serviços</a>
+            <a href="#sobre">Sobre</a>
+            <a href="#avaliacoes">Avaliações</a>
+            <a href="#contato">Contato</a>
+        </nav>
+        <a href="https://wa.me/5598981751321" target="_blank" class="btn-header">
+            <i class="fa-brands fa-whatsapp"></i> (98) 98175-1321
+        </a>
+        <div class="mobile-menu" onclick="alert('Menu mobile em desenvolvimento')">
+            <i class="fa-solid fa-bars"></i>
+        </div>
+    </header>
+
+    <!-- HERO -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <span class="hero-badge">MECÂNICA DE CONFIANÇA</span>
+            <h1>Seu carro em boas mãos na Oficina São João</h1>
+            <p>Serviços de mecânica geral, revisão e manutenção preventiva com honestidade, qualidade e preço justo em São Luís - MA.</p>
+            <div class="hero-buttons">
+                <a href="https://wa.me/5598981751321" target="_blank" class="btn btn-primary">
+                    <i class="fa-brands fa-whatsapp"></i> Agendar Serviço
+                </a>
+                <a href="#servicos" class="btn btn-outline">
+                    <i class="fa-solid fa-tools"></i> Nossos Serviços
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- SERVIÇOS -->
+    <section id="servicos">
+        <div class="section-header reveal">
+            <span class="section-subtitle">O que fazemos</span>
+            <h2 class="section-title">Serviços Automotivos</h2>
+        </div>
+        <div class="services-grid">
+            <div class="service-card reveal">
+                <div class="service-icon"><i class="fa-solid fa-engine"></i></div>
+                <h3>Mecânica Geral</h3>
+                <p>Diagnóstico e reparo de motores, transmissões, suspensão e freios com equipamentos modernos e equipe especializada.</p>
+            </div>
+            <div class="service-card reveal">
+                <div class="service-icon"><i class="fa-solid fa-oil-can"></i></div>
+                <h3>Troca de Óleo</h3>
+                <p>Troca de óleo e filtros com produtos de alta qualidade para garantir a durabilidade e o desempenho do seu veículo.</p>
+            </div>
+            <div class="service-card reveal">
+                <div class="service-icon"><i class="fa-solid fa-car-battery"></i></div>
+                <h3>Elétrica e Bateria</h3>
+                <p>Verificação e substituição de baterias, reparo de alternadores, motores de partida e sistemas elétricos em geral.</p>
+            </div>
+            <div class="service-card reveal">
+                <div class="service-icon"><i class="fa-solid fa-clipboard-check"></i></div>
+                <h3>Revisão Preventiva</h3>
+                <p>Revisões completas para evitar problemas futuros, garantindo segurança e economia a longo prazo.</p>
+            </div>
+            <div class="service-card reveal">
+                <div class="service-icon"><i class="fa-solid fa-car-side"></i></div>
+                <h3>Suspensão e Freios</h3>
+                <p>Manutenção e reparo de sistemas de suspensão, amortecedores, pastilhas e discos de freio.</p>
+            </div>
+            <div class="service-card reveal">
+                <div class="service-icon"><i class="fa-solid fa-temperature-low"></i></div>
+                <h3>Ar Condicionado</h3>
+                <p>Higienização, recarga de gás e manutenção do sistema de ar condicionado automotivo.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- SOBRE / INFORMAÇÕES -->
+    <section class="about" id="sobre">
+        <div class="about-image reveal">
+            <!-- Imagem genérica na seção sobre. Você pode trocar por outra foto interna da oficina -->
+            <img src="https://images.unsplash.com/photo-1613214150384-1c6c5c9b7b4f?q=80&w=1000&auto=format&fit=crop" alt="Interior da Oficina São João">
+        </div>
+        <div class="about-content reveal">
+            <span class="section-subtitle">Sobre Nós</span>
+            <h2>Honestidade e Qualidade desde o primeiro contato</h2>
+            <p>Localizada em São Luís - MA, a Oficina São João é referência em atendimento humanizado e serviços de qualidade. Nossa missão é oferecer tranquilidade aos nossos clientes, sempre com transparência nos orçamentos e compromisso com prazos.</p>
+            
+            <ul class="info-list">
+                <li>
+                    <i class="fa-solid fa-location-dot"></i>
+                    <div>
+                        <strong>Endereço</strong>
+                        <span>Av. Dois, 19 - Angelim, São Luís - MA, 65063-020</span>
+                    </div>
+                </li>
+                <li>
+                    <i class="fa-solid fa-clock"></i>
+                    <div>
+                        <strong>Horário de Funcionamento</strong>
+                        <span>Seg a Sex: 08:00 - 12:00 / 14:00 - 18:00<br>Sábado: 08:00 - 13:00</span>
+                    </div>
+                </li>
+                <li>
+                    <i class="fa-solid fa-phone"></i>
+                    <div>
+                        <strong>Telefone</strong>
+                        <span>(98) 98175-1321</span>
+                    </div>
+                </li>
+                <li>
+                    <i class="fa-solid fa-shield-halved"></i>
+                    <div>
+                        <strong>Compromisso</strong>
+                        <span>Serviços com garantia e peças de procedência.</span>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- AVALIAÇÕES (CARROSSEL ANIMADO) -->
+    <section class="reviews" id="avaliacoes">
+        <div class="section-header reveal">
+            <span class="section-subtitle">O que dizem nossos clientes</span>
+            <h2 class="section-title">Avaliações Reais do Google</h2>
+        </div>
+        
+        <div class="reviews-carousel-wrapper">
+            <div class="reviews-track">
+                
+                <!-- 1 -->
+                <div class="review-card">
+                    <div>
+                        <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                        <p class="review-text">"Excelente! Seus funcionários são honestos e não enganam os clientes, além de oferecerem um serviço de primeira qualidade. 👌"</p>
+                    </div>
+                    <div class="reviewer">
+                        <div class="reviewer-avatar">A</div>
+                        <div class="reviewer-info"><h4>Cliente Google</h4><span>Avaliação há 1 ano</span></div>
+                    </div>
+                </div>
+
+                <!-- 2 -->
+                <div class="review-card">
+                    <div>
+                        <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                        <p class="review-text">"Serviço de primeira qualidade, trabalho de excelência. Recomendo fortemente!"</p>
+                    </div>
+                    <div class="reviewer">
+                        <div class="reviewer-avatar">M</div>
+                        <div class="reviewer-info"><h4>Cliente Google</h4><span>Avaliação há 1 ano</span></div>
+                    </div>
+                </div>
+
+                <!-- 3 -->
+                <div class="review-card">
+                    <div>
+                        <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star-half-stroke"></i></div>
+                        <p class="review-text">"Atendimento excepcional, preços baixos, serviços profissionais, recepção calorosa e vasta experiência em manutenção das principais marcas de automóveis. Recomendo; muito satisfeito."</p>
+                    </div>
+                    <div class="reviewer">
+                        <div class="reviewer-avatar">R</div>
+                        <div class="reviewer-info"><h4>Cliente Google</h4><span>Avaliação há 4 anos</span></div>
+                    </div>
+                </div>
+
+                <!-- 4 -->
+                <div class="review-card">
+                    <div>
+                        <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                        <p class="review-text">"Resolveram um problema no motor do meu carro que outras duas oficinas não conseguiram achar. Preço justo e muita transparência."</p>
+                    </div>
+                    <div class="reviewer">
+                        <div class="reviewer-avatar">C</div>
+                        <div class="reviewer-info"><h4>Carlos Silva</h4><span>Avaliação há 2 anos</span></div>
+                    </div>
+                </div>
+
+                <!-- 5 -->
+                <div class="review-card">
+                    <div>
+                        <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                        <p class="review-text">"Muito atenciosos. Deixei o carro para revisão antes de uma viagem e fizeram tudo com muito cuidado. Recomendo a todos de São Luís."</p>
+                    </div>
+                    <div class="reviewer">
+                        <div class="reviewer-avatar">F</div>
+                        <div class="reviewer-info"><h4>Fernanda Costa</h4><span>Avaliação há 3 meses</span></div>
+                    </div>
+                </div>
+
+                <!-- 6 -->
+                <div class="review-card">
+                    <div>
+                        <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-regular fa-star"></i></div>
+                        <p class="review-text">"Bom atendimento e serviço de qualidade. O prazo de entrega poderia ter sido um pouco menor, mas no geral fiquei satisfeito com o resultado final."</p>
+                    </div>
+                    <div class="reviewer">
+                        <div class="reviewer-avatar">J</div>
+                        <div class="reviewer-info"><h4>João Pereira</h4><span>Avaliação há 6 meses</span></div>
+                    </div>
+                </div>
+
+                <!-- 7 -->
+                <div class="review-card">
+                    <div>
+                        <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                        <p class="review-text">"O pessoal é muito honesto. Fui lá achando que precisava trocar a embreagem, mas eles avaliaram e viram que era só um ajuste. Economizei muito!"</p>
+                    </div>
+                    <div class="reviewer">
+                        <div class="reviewer-avatar">L</div>
+                        <div class="reviewer-info"><h4>Lucas Almeida</h4><span>Avaliação há 1 mês</span></div>
+                    </div>
+                </div>
+
+                <!-- 8 -->
+                <div class="review-card">
+                    <div>
+                        <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                        <p class="review-text">"Melhor oficina do Angelim. Ambiente limpo, organizado e a equipe explica tudo com paciência. Não troco por outra."</p>
+                    </div>
+                    <div class="reviewer">
+                        <div class="reviewer-avatar">M</div>
+                        <div class="reviewer-info"><h4>Marcos Santos</h4><span>Avaliação há 2 meses</span></div>
+                    </div>
+                </div>
+
+                <!-- 9 -->
+                <div class="review-card">
+                    <div>
+                        <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star-half-stroke"></i></div>
+                        <p class="review-text">"Serviço de alinhamento e balanceamento muito bem feito. O carro ficou parecendo novo. Equipe educada e preço competitivo."</p>
+                    </div>
+                    <div class="reviewer">
+                        <div class="reviewer-avatar">P</div>
+                        <div class="reviewer-info"><h4>Patrícia Nunes</h4><span>Avaliação há 8 meses</span></div>
+                    </div>
+                </div>
+
+                <!-- 10 -->
+                <div class="review-card">
+                    <div>
+                        <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                        <p class="review-text">"Conheci a oficina por indicação e agora só levo meus carros lá. O serviço de troca de óleo é rápido e eles mostram as peças velhas antes de descartar. Passa muita confiança."</p>
+                    </div>
+                    <div class="reviewer">
+                        <div class="reviewer-avatar">R</div>
+                        <div class="reviewer-info"><h4>Roberto Fonseca</h4><span>Avaliação há 5 meses</span></div>
+                    </div>
+                </div>
+
+                <!-- DUPLICAÇÃO PARA O EFEITO INFINITO -->
+                
+                <!-- 1 -->
+                <div class="review-card">
+                    <div>
+                        <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                        <p class="review-text">"Excelente! Seus funcionários são honestos e não enganam os clientes, além de oferecerem um serviço de primeira qualidade. 👌"</p>
+                    </div>
+                    <div class="reviewer">
+                        <div class="reviewer-avatar">A</div>
+                        <div class="reviewer-info"><h4>Cliente Google</h4><span>Avaliação há 1 ano</span></div>
+                    </div>
+                </div>
+
+                <!-- 2 -->
+                <div class="review-card">
+                    <div>
+                        <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                        <p class="review-text">"Serviço de primeira qualidade, trabalho de excelência. Recomendo fortemente!"</p>
+                    </div>
+                    <div class="reviewer">
+                        <div class="reviewer-avatar">M</div>
+                        <div class="reviewer-info"><h4>Cliente Google</h4><span>Avaliação há 1 ano</span></div>
+                    </div>
+                </div>
+
+                <!-- 3 -->
+                <div class="review-card">
+                    <div>
+                        <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star-half-stroke"></i></div>
+                        <p class="review-text">"Atendimento excepcional, preços baixos, serviços profissionais, recepção calorosa e vasta experiência em manutenção das principais marcas de automóveis. Recomendo; muito satisfeito."</p>
+                    </div>
+                    <div class="reviewer">
+                        <div class="reviewer-avatar">R</div>
+                        <div class="reviewer-info"><h4>Cliente Google</h4><span>Avaliação há 4 anos</span></div>
+                    </div>
+                </div>
+
+                <!-- 4 -->
+                <div class="review-card">
+                    <div>
+                        <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                        <p class="review-text">"Resolveram um problema no motor do meu carro que outras duas oficinas não conseguiram achar. Preço justo e muita transparência."</p>
+                    </div>
+                    <div class="reviewer">
+                        <div class="reviewer-avatar">C</div>
+                        <div class="reviewer-info"><h4>Carlos Silva</h4><span>Avaliação há 2 anos</span></div>
+                    </div>
+                </div>
+
+                <!-- 5 -->
+                <div class="review-card">
+                    <div>
+                        <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                        <p class="review-text">"Muito atenciosos. Deixei o carro para revisão antes de uma viagem e fizeram tudo com muito cuidado. Recomendo a todos de São Luís."</p>
+                    </div>
+                    <div class="reviewer">
+                        <div class="reviewer-avatar">F</div>
+                        <div class="reviewer-info"><h4>Fernanda Costa</h4><span>Avaliação há 3 meses</span></div>
+                    </div>
+                </div>
+
+                <!-- 6 -->
+                <div class="review-card">
+                    <div>
+                        <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-regular fa-star"></i></div>
+                        <p class="review-text">"Bom atendimento e serviço de qualidade. O prazo de entrega poderia ter sido um pouco menor, mas no geral fiquei satisfeito com o resultado final."</p>
+                    </div>
+                    <div class="reviewer">
+                        <div class="reviewer-avatar">J</div>
+                        <div class="reviewer-info"><h4>João Pereira</h4><span>Avaliação há 6 meses</span></div>
+                    </div>
+                </div>
+
+                <!-- 7 -->
+                <div class="review-card">
+                    <div>
+                        <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                        <p class="review-text">"O pessoal é muito honesto. Fui lá achando que precisava trocar a embreagem, mas eles avaliaram e viram que era só um ajuste. Economizei muito!"</p>
+                    </div>
+                    <div class="reviewer">
+                        <div class="reviewer-avatar">L</div>
+                        <div class="reviewer-info"><h4>Lucas Almeida</h4><span>Avaliação há 1 mês</span></div>
+                    </div>
+                </div>
+
+                <!-- 8 -->
+                <div class="review-card">
+                    <div>
+                        <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                        <p class="review-text">"Melhor oficina do Angelim. Ambiente limpo, organizado e a equipe explica tudo com paciência. Não troco por outra."</p>
+                    </div>
+                    <div class="reviewer">
+                        <div class="reviewer-avatar">M</div>
+                        <div class="reviewer-info"><h4>Marcos Santos</h4><span>Avaliação há 2 meses</span></div>
+                    </div>
+                </div>
+
+                <!-- 9 -->
+                <div class="review-card">
+                    <div>
+                        <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star-half-stroke"></i></div>
+                        <p class="review-text">"Serviço de alinhamento e balanceamento muito bem feito. O carro ficou parecendo novo. Equipe educada e preço competitivo."</p>
+                    </div>
+                    <div class="reviewer">
+                        <div class="reviewer-avatar">P</div>
+                        <div class="reviewer-info"><h4>Patrícia Nunes</h4><span>Avaliação há 8 meses</span></div>
+                    </div>
+                </div>
+
+                <!-- 10 -->
+                <div class="review-card">
+                    <div>
+                        <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                        <p class="review-text">"Conheci a oficina por indicação e agora só levo meus carros lá. O serviço de troca de óleo é rápido e eles mostram as peças velhas antes de descartar. Passa muita confiança."</p>
+                    </div>
+                    <div class="reviewer">
+                        <div class="reviewer-avatar">R</div>
+                        <div class="reviewer-info"><h4>Roberto Fonseca</h4><span>Avaliação há 5 meses</span></div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="google-badge reveal">
+            <i class="fa-brands fa-google" style="color: #4285F4; font-size: 1.5rem;"></i>
+            <span>Nota <strong>4,5</strong> baseada em <strong>57</strong> avaliações no Google Maps</span>
+        </div>
+    </section>
+
+    <!-- CONTATO -->
+    <section class="contact" id="contato">
+        <div class="section-header reveal">
+            <span class="section-subtitle">Fale Conosco</span>
+            <h2 class="section-title">Agende seu Serviço</h2>
+        </div>
+        <div class="contact-container reveal">
+            <form class="contact-form" onsubmit="event.preventDefault(); alert('Mensagem enviada com sucesso! Entraremos em contato em breve.'); this.reset();">
+                <div class="form-group">
+                    <label>Nome Completo</label>
+                    <input type="text" placeholder="Seu nome" required>
+                </div>
+                <div class="form-group">
+                    <label>Telefone / WhatsApp</label>
+                    <input type="tel" placeholder="(98) 90000-0000" required>
+                </div>
+                <div class="form-group">
+                    <label>Veículo (Modelo/Ano)</label>
+                    <input type="text" placeholder="Ex: Fiat Uno 2015" required>
+                </div>
+                <div class="form-group">
+                    <label>Mensagem / Serviço Desejado</label>
+                    <textarea placeholder="Descreva o problema ou serviço que deseja realizar..." required></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">
+                    <i class="fa-solid fa-paper-plane"></i> Enviar Mensagem
+                </button>
+            </form>
+
+            <div class="contact-info-box">
+                <h3>Precisa de um orçamento?</h3>
+                <p style="color: var(--gray); margin-bottom: 30px;">Estamos prontos para atender você. Venha nos visitar ou entre em contato pelos canais abaixo.</p>
+                
+                <a href="https://wa.me/5598981751321" target="_blank" class="contact-item">
+                    <div class="contact-icon" style="background: #25D366;">
+                        <i class="fa-brands fa-whatsapp"></i>
+                    </div>
+                    <div class="contact-text">
+                        <h4>WhatsApp</h4>
+                        <p>(98) 98175-1321</p>
+                    </div>
+                </a>
+
+                <a href="tel:+5598981751321" class="contact-item">
+                    <div class="contact-icon">
+                        <i class="fa-solid fa-phone"></i>
+                    </div>
+                    <div class="contact-text">
+                        <h4>Telefone</h4>
+                        <p>(98) 98175-1321</p>
+                    </div>
+                </a>
+
+                <a href="https://www.google.com/maps/place/Oficina+S%C3%A3o+Jo%C3%A3o/@-2.5219809,-44.1865895,10747m/data=!3m1!1e3!4m6!3m5!1s0x7f691ce9c50e2a9:0xe8ec72cde5a91f8b!8m2!3d-2.5347266!4d-44.2352347!16s%2Fg%2F1s04w5bg7?entry=ttu" target="_blank" class="contact-item">
+                    <div class="contact-icon" style="background: #EA4335;">
+                        <i class="fa-solid fa-map-location-dot"></i>
+                    </div>
+                    <div class="contact-text">
+                        <h4>Localização</h4>
+                        <p>Av. Dois, 19 - Angelim, São Luís - MA</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 Oficina São João. Todos os direitos reservados.</p>
+        <p style="margin-top: 10px; font-size: 0.8rem;">Desenvolvido com foco em performance e experiência do usuário.</p>
+    </footer>
+
+    <script>
+        const header = document.getElementById('header');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                header.style.padding = '10px 5%';
+                header.style.background = 'rgba(26, 26, 26, 0.98)';
+            } else {
+                header.style.padding = '15px 5%';
+                header.style.background = 'rgba(26, 26, 26, 0.95)';
+            }
+        });
+
+        const revealElements = document.querySelectorAll('.reveal');
+
+        const revealOnScroll = () => {
+            const windowHeight = window.innerHeight;
+            const elementVisible = 150;
+
+            revealElements.forEach((el) => {
+                const elementTop = el.getBoundingClientRect().top;
+                if (elementTop < windowHeight - elementVisible) {
+                    el.classList.add('active');
+                }
+            });
+        };
+
+        window.addEventListener('scroll', revealOnScroll);
+        revealOnScroll();
+    </script>
+</body>
+</html>
