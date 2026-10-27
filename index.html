@@ -132,7 +132,7 @@
         .hero {
             height: 100vh;
             min-height: 600px;
-            /* AQUI ESTÁ A MUDANÇA: O url() aponta para a imagem salva na mesma pasta */
+            /* URL da foto da fachada */
             background: linear-gradient(rgba(26, 26, 26, 0.75), rgba(62, 37, 20, 0.85)), url('fachada-oficina.jpg') center/cover;
             display: flex;
             align-items: center;
@@ -144,7 +144,6 @@
         .hero-content {
             max-width: 800px;
             color: var(--white);
-            /* Fundo sutil para garantir leitura caso a foto seja muito clara */
             background: rgba(0, 0, 0, 0.2); 
             padding: 40px;
             border-radius: 10px;
@@ -170,7 +169,7 @@
             opacity: 0;
             transform: translateY(30px);
             letter-spacing: -1.5px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.5); /* Sombra para destacar do fundo */
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
         }
 
         .hero p {
@@ -292,7 +291,7 @@
             letter-spacing: -0.1px;
         }
 
-        /* --- ABOUT / INFO --- */
+        /* --- ABOUT / INFO & MAPA --- */
         .about {
             background: var(--light);
             display: grid;
@@ -307,18 +306,18 @@
             overflow: hidden;
             box-shadow: 0 20px 40px rgba(0,0,0,0.1);
             border: 5px solid var(--primary);
+            /* Garante que o mapa tenha uma altura mínima */
+            min-height: 450px; 
+            display: flex;
         }
 
-        .about-image img {
+        /* Regras específicas para o iframe do Google Maps */
+        .about-image iframe {
             width: 100%;
             height: 100%;
-            object-fit: cover;
-            transition: var(--transition);
+            border: none;
             display: block;
-        }
-
-        .about-image:hover img {
-            transform: scale(1.05);
+            transition: var(--transition);
         }
 
         .about-content h2 {
@@ -637,6 +636,9 @@
             .hero h1 {
                 font-size: 3rem;
             }
+            .about-image {
+                min-height: 350px; /* Mapa fica um pouco menor no tablet */
+            }
         }
 
         @media (max-width: 768px) {
@@ -751,12 +753,18 @@
         </div>
     </section>
 
-    <!-- SOBRE / INFORMAÇÕES -->
+    <!-- SOBRE / INFORMAÇÕES & MAPA -->
     <section class="about" id="sobre">
         <div class="about-image reveal">
-            <!-- Imagem genérica na seção sobre. Você pode trocar por outra foto interna da oficina -->
-            <img src="https://images.unsplash.com/photo-1613214150384-1c6c5c9b7b4f?q=80&w=1000&auto=format&fit=crop" alt="Interior da Oficina São João">
+            <!-- Mapa do Google Maps integrado -->
+            <iframe 
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3986.035188731725!2d-44.23523469999999!3d-2.5347265999999997!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x7f691ce9c50e2a9%3A0xe8ec72cde5a91f8b!2sOficina%20S%C3%A3o%20Jo%C3%A3o!5e0!3m2!1spt-BR!2sbr!4v1714500000000!5m2!1spt-BR!2sbr" 
+                allowfullscreen="" 
+                loading="lazy" 
+                referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
         </div>
+        
         <div class="about-content reveal">
             <span class="section-subtitle">Sobre Nós</span>
             <h2>Honestidade e Qualidade desde o primeiro contato</h2>
